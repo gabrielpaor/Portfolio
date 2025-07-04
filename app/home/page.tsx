@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Github, Linkedin, Mail, Download } from "lucide-react";
 import PageTransition from "@/components/page-transition";
+import { useEffect } from "react";
 
 export default function HomePage() {
   const containerVariants = {
@@ -25,7 +26,6 @@ export default function HomePage() {
       opacity: 1,
       transition: {
         duration: 0.5,
-        ease: "easeOut",
       },
     },
   };
@@ -35,35 +35,47 @@ export default function HomePage() {
       y: [-10, 10, -10],
       transition: {
         duration: 3,
-        repeat: Number.POSITIVE_INFINITY,
-        ease: "easeInOut",
+        repeat: Infinity,
       },
     },
   };
 
   return (
     <PageTransition>
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 relative overflow-hidden">
+      <div
+        className="min-h-screen relative overflow-hidden"
+        style={{
+          backgroundImage: "url('/home-bg.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        {/* Particles Container */}
+        <div id="particles-js" className="absolute inset-0 z-0"></div>
+
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-50/60 via-blue-50/50 to-indigo-100/60 z-1"></div>
         {/* Floating Background Elements */}
         <motion.div
           variants={floatingVariants}
           animate="animate"
-          className="absolute top-20 left-10 w-32 h-32 bg-blue-200/30 rounded-full blur-xl"
+          className="absolute top-20 left-10 w-32 h-32 bg-blue-200/20 rounded-full blur-xl z-2"
         />
         <motion.div
           variants={floatingVariants}
           animate="animate"
           transition={{ delay: 1 }}
-          className="absolute bottom-20 right-10 w-40 h-40 bg-indigo-200/30 rounded-full blur-xl"
+          className="absolute bottom-20 right-10 w-40 h-40 bg-indigo-200/20 rounded-full blur-xl z-2"
         />
         <motion.div
           variants={floatingVariants}
           animate="animate"
           transition={{ delay: 2 }}
-          className="absolute top-1/2 left-1/4 w-24 h-24 bg-purple-200/30 rounded-full blur-xl"
+          className="absolute top-1/2 left-1/4 w-24 h-24 bg-purple-200/20 rounded-full blur-xl z-2"
         />
 
-        <div className="container mx-auto px-4 py-20 relative z-10">
+        <div className="container mx-auto px-4 py-20 relative z-20">
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -159,14 +171,23 @@ export default function HomePage() {
             {/* Social Links */}
             <motion.div variants={itemVariants} className="flex gap-6">
               {[
-                { icon: Github, href: "#", label: "GitHub" },
-                { icon: Linkedin, href: "#", label: "LinkedIn" },
+                {
+                  icon: Github,
+                  href: "https://github.com/gabrielpaor",
+                  label: "GitHub",
+                },
+                {
+                  icon: Linkedin,
+                  href: "https://www.linkedin.com/in/gabriel-john-paor-ba0bb4235/",
+                  label: "LinkedIn",
+                },
                 { icon: Mail, href: "/contact", label: "Email" },
-                { icon: Download, href: "#", label: "Resume" },
+                // { icon: Download, href: "#", label: "Resume" },
               ].map((social, index) => (
                 <motion.a
                   key={social.label}
                   href={social.href}
+                  target="_blank"
                   className="p-3 bg-white/80 backdrop-blur-sm rounded-full shadow-lg hover:shadow-xl transition-all duration-300 text-gray-700 hover:text-blue-600"
                   whileHover={{
                     scale: 1.1,
@@ -185,7 +206,7 @@ export default function HomePage() {
             </motion.div>
 
             {/* Scroll Indicator */}
-            <motion.div
+            {/* <motion.div
               className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
               animate={{ y: [0, 10, 0] }}
               transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
@@ -197,7 +218,7 @@ export default function HomePage() {
                   transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
                 />
               </div>
-            </motion.div>
+            </motion.div> */}
           </motion.div>
         </div>
       </div>

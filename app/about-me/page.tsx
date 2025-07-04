@@ -12,6 +12,7 @@ import {
   Code,
   Palette,
   Zap,
+  Gamepad2,
 } from "lucide-react";
 import PageTransition from "@/components/page-transition";
 
@@ -102,7 +103,7 @@ export default function AboutMePage() {
                           transition={{ duration: 0.8 }}
                         >
                           <Image
-                            src="/placeholder.svg?height=500&width=400"
+                            src="/gabriel.jpg"
                             alt="Gabriel Paor - React Developer"
                             width={400}
                             height={500}
@@ -145,12 +146,12 @@ export default function AboutMePage() {
                         {[
                           {
                             icon: MapPin,
-                            text: "San Francisco, CA",
+                            text: "Quezon City, PH",
                             color: "text-blue-600",
                           },
                           {
                             icon: Calendar,
-                            text: "4+ years experience",
+                            text: "2+ years experience",
                             color: "text-green-600",
                           },
                           {
@@ -159,8 +160,8 @@ export default function AboutMePage() {
                             color: "text-amber-600",
                           },
                           {
-                            icon: Heart,
-                            text: "Open source contributor",
+                            icon: Gamepad2,
+                            text: "Gamer at heart",
                             color: "text-red-600",
                           },
                         ].map((item, index) => (
@@ -212,7 +213,7 @@ export default function AboutMePage() {
                       >
                         <p>
                           Hello! I'm Gabriel, a passionate front-end developer
-                          with over 4 years of experience creating beautiful,
+                          with over 2 years of experience creating beautiful,
                           functional, and user-centered digital experiences. My
                           journey into web development started during college
                           when I built my first interactive website and fell in
@@ -229,10 +230,9 @@ export default function AboutMePage() {
                         </p>
                         <p>
                           When I'm not coding, you can find me exploring new
-                          coffee shops around San Francisco, contributing to
-                          open source projects, or hiking in the beautiful
-                          California mountains. I'm always eager to learn new
-                          technologies and take on challenging projects.
+                          coffee shops around Quezon City, gaming, or riding my
+                          motorcycle. I'm always eager to learn new technologies
+                          and take on challenging projects.
                         </p>
                       </motion.div>
                     </CardContent>

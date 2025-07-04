@@ -1,8 +1,9 @@
 "use client";
 
 import type React from "react";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { motion } from "framer-motion";
+import emailjs from "@emailjs/browser";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -16,6 +17,7 @@ import {
   Linkedin,
   Twitter,
   MessageCircle,
+  Facebook,
 } from "lucide-react";
 import PageTransition from "@/components/page-transition";
 
@@ -28,16 +30,34 @@ export default function ContactPage() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const form = useRef<HTMLFormElement>(null);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    try {
+      const result = await emailjs.sendForm(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        form.current!,
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+      );
 
-    alert("Thank you for your message! I'll get back to you soon.");
-    setFormData({ name: "", email: "", subject: "", message: "" });
-    setIsSubmitting(false);
+      if (result.text === "OK") {
+        alert("Thank you for your message! I'll get back to you soon.");
+        setFormData({ name: "", email: "", subject: "", message: "" });
+      } else {
+        throw new Error("Failed to send message");
+      }
+    } catch (error) {
+      alert(
+        "Sorry, there was an error sending your message. Please try again later."
+      );
+      console.error("Email sending error:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (
@@ -67,7 +87,6 @@ export default function ContactPage() {
       opacity: 1,
       transition: {
         duration: 0.5,
-        ease: "easeOut",
       },
     },
   };
@@ -117,7 +136,11 @@ export default function ContactPage() {
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <form onSubmit={handleSubmit} className="space-y-6">
+                    <form
+                      ref={form}
+                      onSubmit={handleSubmit}
+                      className="space-y-6"
+                    >
                       <div className="grid md:grid-cols-2 gap-4">
                         <motion.div
                           initial={{ opacity: 0, x: -20 }}
@@ -331,21 +354,21 @@ export default function ContactPage() {
                         {[
                           {
                             icon: Github,
-                            href: "#",
+                            href: "https://github.com/gabrielpaor",
                             label: "GitHub",
                             color: "bg-gray-900 hover:bg-gray-800",
                           },
                           {
                             icon: Linkedin,
-                            href: "#",
+                            href: "https://www.linkedin.com/in/gabriel-john-paor-ba0bb4235/",
                             label: "LinkedIn",
                             color: "bg-blue-600 hover:bg-blue-700",
                           },
                           {
-                            icon: Twitter,
-                            href: "#",
-                            label: "Twitter",
-                            color: "bg-blue-400 hover:bg-blue-500",
+                            icon: Facebook,
+                            href: "https://www.facebook.com/gabriel.paor/",
+                            label: "Facebook",
+                            color: "bg-blue-700 hover:bg-blue-500",
                           },
                         ].map((social, index) => (
                           <motion.a
