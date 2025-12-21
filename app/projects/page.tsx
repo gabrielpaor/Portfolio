@@ -21,7 +21,6 @@ export default function ProjectsPage() {
       liveUrl: "#",
       githubUrl: "#",
       featured: true,
-      stars: 124,
     },
     {
       id: 2,
@@ -33,7 +32,6 @@ export default function ProjectsPage() {
       liveUrl: "#",
       githubUrl: "#",
       featured: true,
-      stars: 89,
     },
     {
       id: 3,
@@ -45,7 +43,6 @@ export default function ProjectsPage() {
       liveUrl: "#",
       githubUrl: "#",
       featured: false,
-      stars: 67,
     },
     {
       id: 4,
@@ -57,7 +54,6 @@ export default function ProjectsPage() {
       liveUrl: "#",
       githubUrl: "#",
       featured: false,
-      stars: 45,
     },
     {
       id: 5,
@@ -69,7 +65,6 @@ export default function ProjectsPage() {
       liveUrl: "#",
       githubUrl: "#",
       featured: false,
-      stars: 78,
     },
     {
       id: 6,
@@ -81,7 +76,6 @@ export default function ProjectsPage() {
       liveUrl: "#",
       githubUrl: "#",
       featured: false,
-      stars: 156,
     },
   ]
 
@@ -106,20 +100,20 @@ export default function ProjectsPage() {
       opacity: 1,
       transition: {
         duration: 0.5,
-        ease: "easeOut",
+        ease: "easeOut" as const,
       },
     },
   }
 
   return (
     <PageTransition>
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 py-20">
+      <div className="min-h-screen bg-gradient-to-br from-background to-muted py-20">
         <div className="container mx-auto px-4">
           <motion.div variants={containerVariants} initial="hidden" animate="visible">
             {/* Header */}
             <motion.div variants={itemVariants} className="text-center mb-16">
               <motion.h1
-                className="text-4xl md:text-5xl font-bold text-gray-900 mb-4"
+                className="text-4xl md:text-5xl font-bold text-foreground mb-4"
                 initial={{ scale: 0.5, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
@@ -127,7 +121,7 @@ export default function ProjectsPage() {
                 My Projects
               </motion.h1>
               <motion.p
-                className="text-xl text-gray-600 max-w-2xl mx-auto"
+                className="text-xl text-muted-foreground max-w-2xl mx-auto"
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.2, duration: 0.6 }}
@@ -139,7 +133,7 @@ export default function ProjectsPage() {
             {/* Featured Projects */}
             <motion.div variants={itemVariants} className="mb-16">
               <motion.h2
-                className="text-3xl font-bold text-gray-900 mb-8"
+                className="text-3xl font-bold text-foreground mb-8"
                 initial={{ x: -20, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: 0.4 }}
@@ -154,7 +148,7 @@ export default function ProjectsPage() {
                     whileHover={{ y: -10, scale: 1.02 }}
                     transition={{ type: "spring", stiffness: 300 }}
                   >
-                    <Card className="overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 bg-white/80 backdrop-blur-sm">
+                    <Card className="overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 backdrop-blur-sm h-full flex flex-col">
                       <div className="relative overflow-hidden">
                         <motion.div whileHover={{ scale: 1.1 }} transition={{ duration: 0.3 }}>
                           <Image
@@ -171,21 +165,18 @@ export default function ProjectsPage() {
                           animate={{ opacity: 1, scale: 1 }}
                           transition={{ delay: 0.6 + index * 0.1 }}
                         >
-                          <Badge className="bg-blue-600 text-white shadow-lg">
+                          <Badge className="bg-primary text-primary-foreground shadow-lg">
                             <Star className="w-3 h-3 mr-1" />
                             Featured
-                          </Badge>
-                          <Badge variant="secondary" className="bg-white/90 text-gray-700">
-                            ⭐ {project.stars}
                           </Badge>
                         </motion.div>
                       </div>
                       <CardHeader>
                         <CardTitle className="text-xl font-bold">{project.title}</CardTitle>
                       </CardHeader>
-                      <CardContent>
-                        <p className="text-gray-600 mb-4 leading-relaxed">{project.description}</p>
-                        <div className="flex flex-wrap gap-2">
+                      <CardContent className="flex-1 flex flex-col">
+                        <p className="text-muted-foreground mb-4 leading-relaxed flex-1">{project.description}</p>
+                        <div className="flex flex-wrap gap-2 mt-auto">
                           {project.technologies.map((tech, techIndex) => (
                             <motion.div
                               key={tech}
@@ -194,7 +185,7 @@ export default function ProjectsPage() {
                               transition={{ delay: 0.8 + techIndex * 0.05 }}
                               whileHover={{ scale: 1.05 }}
                             >
-                              <Badge variant="secondary" className="text-xs bg-blue-100 text-blue-800">
+                              <Badge variant="secondary" className="text-xs">
                                 {tech}
                               </Badge>
                             </motion.div>
@@ -203,7 +194,7 @@ export default function ProjectsPage() {
                       </CardContent>
                       <CardFooter className="flex gap-2">
                         <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                          <Button asChild size="sm" className="bg-blue-600 hover:bg-blue-700">
+                          <Button asChild size="sm">
                             <Link href={project.liveUrl}>
                               <ExternalLink className="w-4 h-4 mr-2" />
                               Live Demo
@@ -228,7 +219,7 @@ export default function ProjectsPage() {
             {/* Other Projects */}
             <motion.div variants={itemVariants}>
               <motion.h2
-                className="text-3xl font-bold text-gray-900 mb-8"
+                className="text-3xl font-bold text-foreground mb-8"
                 initial={{ x: -20, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: 0.6 }}
@@ -241,10 +232,10 @@ export default function ProjectsPage() {
                     key={project.id}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.8 + index * 0.1 }}
+                    transition={{ delay: 0.1 + index * 0.1 }}
                     whileHover={{ y: -5, scale: 1.02 }}
                   >
-                    <Card className="overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 bg-white/80 backdrop-blur-sm h-full">
+                    <Card className="overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 backdrop-blur-sm h-full">
                       <div className="relative overflow-hidden">
                         <motion.div whileHover={{ scale: 1.1 }} transition={{ duration: 0.3 }}>
                           <Image
@@ -255,25 +246,15 @@ export default function ProjectsPage() {
                             className="w-full h-48 object-cover"
                           />
                         </motion.div>
-                        <motion.div
-                          className="absolute top-3 right-3"
-                          initial={{ opacity: 0, scale: 0 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          transition={{ delay: 1 + index * 0.05 }}
-                        >
-                          <Badge variant="secondary" className="bg-white/90 text-gray-700 text-xs">
-                            ⭐ {project.stars}
-                          </Badge>
-                        </motion.div>
                       </div>
                       <CardHeader>
                         <CardTitle className="text-lg font-bold">{project.title}</CardTitle>
                       </CardHeader>
                       <CardContent className="flex-1">
-                        <p className="text-gray-600 text-sm mb-3 leading-relaxed">{project.description}</p>
+                        <p className="text-muted-foreground text-sm mb-3 leading-relaxed">{project.description}</p>
                         <div className="flex flex-wrap gap-1">
                           {project.technologies.slice(0, 3).map((tech) => (
-                            <Badge key={tech} variant="secondary" className="text-xs bg-blue-100 text-blue-800">
+                            <Badge key={tech} variant="secondary" className="text-xs">
                               {tech}
                             </Badge>
                           ))}
@@ -286,7 +267,7 @@ export default function ProjectsPage() {
                       </CardContent>
                       <CardFooter className="flex gap-2">
                         <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="flex-1">
-                          <Button asChild size="sm" className="w-full bg-blue-600 hover:bg-blue-700">
+                          <Button asChild size="sm" className="w-full">
                             <Link href={project.liveUrl}>
                               <ExternalLink className="w-4 h-4 mr-2" />
                               Demo

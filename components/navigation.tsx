@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Code2 } from "lucide-react";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,7 +27,7 @@ export default function Navigation() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-lg border-b border-gray-200/50"
+      className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border"
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
@@ -34,7 +35,7 @@ export default function Navigation() {
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Link
               href="/home"
-              className="flex items-center gap-2 font-bold text-xl text-gray-900"
+              className="flex items-center gap-2 font-bold text-xl text-foreground"
             >
               <motion.div
                 animate={{ rotate: 360 }}
@@ -51,7 +52,7 @@ export default function Navigation() {
           </motion.div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-6">
             {navItems.map((item, index) => (
               <motion.div
                 key={item.href}
@@ -61,15 +62,15 @@ export default function Navigation() {
               >
                 <Link
                   href={item.href}
-                  className={`relative text-sm font-medium transition-colors hover:text-blue-600 ${
-                    isActive(item.href) ? "text-blue-600" : "text-gray-700"
+                  className={`relative text-sm font-medium transition-colors hover:text-primary ${
+                    isActive(item.href) ? "text-primary" : "text-muted-foreground"
                   }`}
                 >
                   {item.label}
                   {isActive(item.href) && (
                     <motion.div
                       layoutId="activeTab"
-                      className="absolute -bottom-1 left-0 right-0 h-0.5 bg-blue-600"
+                      className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary"
                       initial={false}
                       transition={{
                         type: "spring",
@@ -81,19 +82,21 @@ export default function Navigation() {
                 </Link>
               </motion.div>
             ))}
+            <ThemeToggle />
           </div>
 
-          {/* Mobile Menu Button */}
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="md:hidden"
-          >
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setIsOpen(!isOpen)}
+          {/* Mobile Navigation Controls */}
+          <div className="md:hidden flex items-center gap-2">
+            <ThemeToggle />
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setIsOpen(!isOpen)}
+              >
               <AnimatePresence mode="wait">
                 {isOpen ? (
                   <motion.div
@@ -117,8 +120,9 @@ export default function Navigation() {
                   </motion.div>
                 )}
               </AnimatePresence>
-            </Button>
-          </motion.div>
+              </Button>
+            </motion.div>
+          </div>
         </div>
 
         {/* Mobile Navigation */}
@@ -129,7 +133,7 @@ export default function Navigation() {
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
-              className="md:hidden overflow-hidden border-t border-gray-200/50"
+              className="md:hidden overflow-hidden border-t border-border"
             >
               <div className="py-4 space-y-2">
                 {navItems.map((item, index) => (
@@ -141,10 +145,10 @@ export default function Navigation() {
                   >
                     <Link
                       href={item.href}
-                      className={`block px-4 py-2 text-sm font-medium transition-colors hover:text-blue-600 hover:bg-blue-50 rounded-lg ${
+                      className={`block px-4 py-2 text-sm font-medium transition-colors hover:text-primary hover:bg-accent rounded-lg ${
                         isActive(item.href)
-                          ? "text-blue-600 bg-blue-50"
-                          : "text-gray-700"
+                          ? "text-primary bg-accent"
+                          : "text-muted-foreground"
                       }`}
                       onClick={() => setIsOpen(false)}
                     >

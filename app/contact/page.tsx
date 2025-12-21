@@ -93,17 +93,13 @@ export default function ContactPage() {
 
   return (
     <PageTransition>
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 py-20">
+      <div className="min-h-screen bg-gradient-to-br from-background to-muted py-20">
         <div className="container mx-auto px-4">
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-          >
+          <div>
             {/* Header */}
-            <motion.div variants={itemVariants} className="text-center mb-16">
+            <div className="text-center mb-16">
               <motion.h1
-                className="text-4xl md:text-5xl font-bold text-gray-900 mb-4"
+                className="text-4xl md:text-5xl font-bold text-foreground mb-4"
                 initial={{ scale: 0.5, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
@@ -111,7 +107,7 @@ export default function ContactPage() {
                 Get In Touch
               </motion.h1>
               <motion.p
-                className="text-xl text-gray-600 max-w-2xl mx-auto"
+                className="text-xl text-muted-foreground max-w-2xl mx-auto"
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.2, duration: 0.6 }}
@@ -119,19 +115,15 @@ export default function ContactPage() {
                 Have a project in mind or just want to chat? I'd love to hear
                 from you. Let's create something amazing together!
               </motion.p>
-            </motion.div>
+            </div>
 
             <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12">
               {/* Contact Form */}
-              <motion.div
-                variants={itemVariants}
-                whileHover={{ y: -5 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <Card className="shadow-xl hover:shadow-2xl transition-all duration-300 bg-white/80 backdrop-blur-sm">
+              <div>
+                <Card className="shadow-xl hover:shadow-2xl transition-all duration-300 backdrop-blur-sm">
                   <CardHeader>
-                    <CardTitle className="text-2xl font-bold text-gray-900 flex items-center gap-2">
-                      <MessageCircle className="w-6 h-6 text-blue-600" />
+                    <CardTitle className="text-2xl font-bold text-foreground flex items-center gap-2">
+                      <MessageCircle className="w-6 h-6 text-primary" />
                       Send Me a Message
                     </CardTitle>
                   </CardHeader>
@@ -149,7 +141,7 @@ export default function ContactPage() {
                         >
                           <label
                             htmlFor="name"
-                            className="block text-sm font-medium text-gray-700 mb-2"
+                            className="block text-sm font-medium text-foreground mb-2"
                           >
                             Name *
                           </label>
@@ -171,7 +163,7 @@ export default function ContactPage() {
                         >
                           <label
                             htmlFor="email"
-                            className="block text-sm font-medium text-gray-700 mb-2"
+                            className="block text-sm font-medium text-foreground mb-2"
                           >
                             Email *
                           </label>
@@ -195,7 +187,7 @@ export default function ContactPage() {
                       >
                         <label
                           htmlFor="subject"
-                          className="block text-sm font-medium text-gray-700 mb-2"
+                          className="block text-sm font-medium text-foreground mb-2"
                         >
                           Subject *
                         </label>
@@ -218,7 +210,7 @@ export default function ContactPage() {
                       >
                         <label
                           htmlFor="message"
-                          className="block text-sm font-medium text-gray-700 mb-2"
+                          className="block text-sm font-medium text-foreground mb-2"
                         >
                           Message *
                         </label>
@@ -244,7 +236,7 @@ export default function ContactPage() {
                         <Button
                           type="submit"
                           disabled={isSubmitting}
-                          className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white py-3 shadow-lg hover:shadow-xl transition-all duration-300"
+                          className="w-full py-3 shadow-lg hover:shadow-xl transition-all duration-300"
                         >
                           {isSubmitting ? (
                             <>
@@ -270,19 +262,15 @@ export default function ContactPage() {
                     </form>
                   </CardContent>
                 </Card>
-              </motion.div>
+              </div>
 
               {/* Contact Information */}
               <div className="space-y-8">
                 {/* Contact Details */}
-                <motion.div
-                  variants={itemVariants}
-                  whileHover={{ y: -5 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  <Card className="shadow-xl hover:shadow-2xl transition-all duration-300 bg-white/80 backdrop-blur-sm">
+                <div>
+                  <Card className="shadow-xl hover:shadow-2xl transition-all duration-300 backdrop-blur-sm">
                     <CardHeader>
-                      <CardTitle className="text-2xl font-bold text-gray-900">
+                      <CardTitle className="text-2xl font-bold text-foreground">
                         Contact Information
                       </CardTitle>
                     </CardHeader>
@@ -326,26 +314,22 @@ export default function ContactPage() {
                             <item.icon className="w-6 h-6" />
                           </motion.div>
                           <div>
-                            <h3 className="font-semibold text-gray-900">
+                            <h3 className="font-semibold text-foreground">
                               {item.title}
                             </h3>
-                            <p className="text-gray-600">{item.info}</p>
+                            <p className="text-muted-foreground">{item.info}</p>
                           </div>
                         </motion.div>
                       ))}
                     </CardContent>
                   </Card>
-                </motion.div>
+                </div>
 
                 {/* Social Links */}
-                <motion.div
-                  variants={itemVariants}
-                  whileHover={{ y: -5 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  <Card className="shadow-xl hover:shadow-2xl transition-all duration-300 bg-white/80 backdrop-blur-sm">
+                <div>
+                  <Card className="shadow-xl hover:shadow-2xl transition-all duration-300 backdrop-blur-sm">
                     <CardHeader>
-                      <CardTitle className="text-2xl font-bold text-gray-900">
+                      <CardTitle className="text-2xl font-bold text-foreground">
                         Connect With Me
                       </CardTitle>
                     </CardHeader>
@@ -356,19 +340,19 @@ export default function ContactPage() {
                             icon: Github,
                             href: "https://github.com/gabrielpaor",
                             label: "GitHub",
-                            color: "bg-gray-900 hover:bg-gray-800",
+                            color: "bg-gray-900 hover:bg-gray-800 dark:bg-gray-700 dark:hover:bg-gray-600",
                           },
                           {
                             icon: Linkedin,
                             href: "https://www.linkedin.com/in/gabriel-john-paor-ba0bb4235/",
                             label: "LinkedIn",
-                            color: "bg-blue-600 hover:bg-blue-700",
+                            color: "bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-600",
                           },
                           {
                             icon: Facebook,
                             href: "https://www.facebook.com/gabriel.paor/",
                             label: "Facebook",
-                            color: "bg-blue-700 hover:bg-blue-500",
+                            color: "bg-blue-700 hover:bg-blue-500 dark:bg-blue-800 dark:hover:bg-blue-600",
                           },
                         ].map((social, index) => (
                           <motion.a
@@ -395,7 +379,7 @@ export default function ContactPage() {
                         ))}
                       </div>
                       <motion.p
-                        className="text-gray-600"
+                        className="text-muted-foreground"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 1.1 }}
@@ -405,15 +389,11 @@ export default function ContactPage() {
                       </motion.p>
                     </CardContent>
                   </Card>
-                </motion.div>
+                </div>
 
                 {/* Availability */}
-                <motion.div
-                  variants={itemVariants}
-                  whileHover={{ y: -5, scale: 1.02 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  <Card className="bg-gradient-to-r from-green-50 to-blue-50 border-green-200 shadow-xl hover:shadow-2xl transition-all duration-300">
+                <div>
+                  <Card className="bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-950/30 dark:to-blue-950/30 border-green-200 dark:border-green-800 shadow-xl hover:shadow-2xl transition-all duration-300">
                     <CardContent className="p-6">
                       <motion.div
                         className="flex items-center gap-3 mb-3"
@@ -432,12 +412,12 @@ export default function ContactPage() {
                             repeat: Number.POSITIVE_INFINITY,
                           }}
                         />
-                        <h3 className="font-semibold text-gray-900">
+                        <h3 className="font-semibold text-foreground">
                           Currently Available
                         </h3>
                       </motion.div>
                       <motion.p
-                        className="text-gray-700 leading-relaxed"
+                        className="text-muted-foreground leading-relaxed"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 1.4 }}
@@ -448,10 +428,10 @@ export default function ContactPage() {
                       </motion.p>
                     </CardContent>
                   </Card>
-                </motion.div>
+                </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </PageTransition>

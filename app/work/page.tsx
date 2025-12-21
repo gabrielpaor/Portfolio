@@ -10,71 +10,37 @@ export default function WorkPage() {
   const experiences = [
     {
       id: 1,
-      title: "Senior Front-End Developer",
-      company: "TechFlow Solutions",
-      location: "San Francisco, CA",
-      period: "2022 - Present",
+      title: "Junior React Developer",
+      company: "Zeniark Philippines Consulting Corp",
+      location: "Pampanga, Philippines",
+      period: "May, 2023 - Present",
       type: "Full-time",
       description:
-        "Leading the front-end development team in building scalable web applications using React and Next.js. Responsible for architecting user interfaces, mentoring junior developers, and implementing best practices for code quality and performance.",
+        "Developing modern web applications using React and Next.js while collaborating with cross-functional teams. Contributing to the development of scalable user interfaces, learning best practices, and growing technical skills in a professional environment.",
       achievements: [
-        "Improved application performance by 40% through code optimization and lazy loading",
-        "Led migration from legacy codebase to modern React architecture",
-        "Mentored 5 junior developers and established coding standards",
-        "Implemented automated testing reducing bugs by 60%",
+        "Built and maintained responsive web applications using React and TypeScript",
+        "Collaborated with senior developers to implement new features and optimize existing code",
+        "Integrated RESTful APIs and managed application state using RTK Query and Tanstack Query",
+        "Participated in code reviews and learned industry-standard development practices",
       ],
-      technologies: ["React", "Next.js", "TypeScript", "GraphQL", "AWS", "Framer Motion"],
+      technologies: ["React", "Next.js", "TypeScript", "Mantine", "RTK Query", "Tanstack Query", "Docker", "Gitlab", "Wordpress" ],
     },
     {
       id: 2,
       title: "Front-End Developer",
-      company: "Digital Innovations Inc",
-      location: "San Francisco, CA",
-      period: "2021 - 2022",
-      type: "Full-time",
+      company: "Homeqube",
+      location: "Quezon City, Philippines",
+      period: "October 2022 - March, 2023",
+      type: "Part-time",
       description:
-        "Developed responsive web applications and collaborated with UX/UI designers to create intuitive user experiences. Worked closely with back-end developers to integrate APIs and optimize application performance.",
+        "Developed web and mobile applications using React, Next.js, and React Native. Collaborated with designers and back-end developers to deliver user-friendly interfaces and integrate APIs for a real estate platform.",
       achievements: [
-        "Built 15+ responsive web applications from scratch",
-        "Reduced page load times by 50% through optimization techniques",
-        "Collaborated with design team to improve user experience metrics",
-        "Implemented accessibility standards achieving WCAG 2.1 compliance",
+        "Built responsive web interfaces using React and Next.js with TypeScript",
+        "Developed cross-platform mobile features using React Native",
+        "Integrated RESTful APIs to connect front-end with back-end services",
+        "Worked with Azure services and implemented version control using Git",
       ],
-      technologies: ["React", "JavaScript", "CSS3", "REST APIs", "Git", "Figma"],
-    },
-    {
-      id: 3,
-      title: "Junior Front-End Developer",
-      company: "StartupXYZ",
-      location: "San Francisco, CA",
-      period: "2020 - 2021",
-      type: "Full-time",
-      description:
-        "Started my professional journey as a junior developer, focusing on learning modern web development practices and contributing to various client projects. Gained experience in agile development methodologies.",
-      achievements: [
-        "Successfully completed 10+ client projects on time",
-        "Learned and implemented modern JavaScript frameworks",
-        "Contributed to open-source projects and company blog",
-        "Received 'Rising Star' award for exceptional growth and dedication",
-      ],
-      technologies: ["HTML5", "CSS3", "JavaScript", "jQuery", "Bootstrap", "Sass"],
-    },
-    {
-      id: 4,
-      title: "Web Development Intern",
-      company: "Creative Agency Pro",
-      location: "San Francisco, CA",
-      period: "Summer 2020",
-      type: "Internship",
-      description:
-        "Gained hands-on experience in web development while working on real client projects. Learned industry best practices and collaborated with experienced developers to deliver high-quality websites.",
-      achievements: [
-        "Developed 5 client websites during 3-month internship",
-        "Learned version control and collaborative development workflows",
-        "Received full-time job offer upon successful completion",
-        "Contributed to agency's design system documentation",
-      ],
-      technologies: ["HTML5", "CSS3", "JavaScript", "WordPress", "Photoshop", "Git"],
+      technologies: ["React", "Next.js", "Typescript", "React Native", "CSS3", "REST APIs", "Git", "Azure"],
     },
   ]
 
@@ -96,20 +62,20 @@ export default function WorkPage() {
       opacity: 1,
       transition: {
         duration: 0.5,
-        ease: "easeOut",
+        ease: "easeOut" as const,
       },
     },
   }
 
   return (
     <PageTransition>
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 py-20">
+      <div className="min-h-screen bg-gradient-to-br from-background to-muted py-20">
         <div className="container mx-auto px-4">
           <motion.div variants={containerVariants} initial="hidden" animate="visible">
             {/* Header */}
             <motion.div variants={itemVariants} className="text-center mb-16">
               <motion.h1
-                className="text-4xl md:text-5xl font-bold text-gray-900 mb-4"
+                className="text-4xl md:text-5xl font-bold text-foreground mb-4"
                 initial={{ scale: 0.5, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
@@ -117,7 +83,7 @@ export default function WorkPage() {
                 Work Experience
               </motion.h1>
               <motion.p
-                className="text-xl text-gray-600 max-w-2xl mx-auto"
+                className="text-xl text-muted-foreground max-w-2xl mx-auto"
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.2, duration: 0.6 }}
@@ -131,7 +97,7 @@ export default function WorkPage() {
               <div className="relative">
                 {/* Timeline Line */}
                 <motion.div
-                  className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-400 to-indigo-600 hidden md:block"
+                  className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary/50 to-primary hidden md:block"
                   initial={{ scaleY: 0 }}
                   animate={{ scaleY: 1 }}
                   transition={{ duration: 1, delay: 0.5 }}
@@ -142,7 +108,7 @@ export default function WorkPage() {
                   <motion.div key={experience.id} variants={itemVariants} className="relative mb-12">
                     {/* Timeline Dot */}
                     <motion.div
-                      className="absolute left-6 w-4 h-4 bg-blue-600 rounded-full border-4 border-white shadow-lg hidden md:block z-10"
+                      className="absolute left-6 w-4 h-4 bg-primary rounded-full border-4 border-background shadow-lg hidden md:block z-10"
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
                       transition={{ delay: 0.7 + index * 0.2, type: "spring", stiffness: 300 }}
@@ -155,13 +121,13 @@ export default function WorkPage() {
                       whileHover={{ y: -5 }}
                       transition={{ type: "spring", stiffness: 300 }}
                     >
-                      <Card className="shadow-lg hover:shadow-2xl transition-all duration-300 bg-white/80 backdrop-blur-sm">
+                      <Card className="shadow-lg hover:shadow-2xl transition-all duration-300 backdrop-blur-sm">
                         <CardHeader>
                           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                             <div>
-                              <CardTitle className="text-xl font-bold text-gray-900 mb-2">{experience.title}</CardTitle>
+                              <CardTitle className="text-xl font-bold text-foreground mb-2">{experience.title}</CardTitle>
                               <motion.div
-                                className="flex items-center gap-2 text-blue-600 font-semibold"
+                                className="flex items-center gap-2 text-primary font-semibold"
                                 whileHover={{ x: 5 }}
                               >
                                 <Building className="w-4 h-4" />
@@ -181,7 +147,7 @@ export default function WorkPage() {
                                   {experience.type}
                                 </Badge>
                               </motion.div>
-                              <div className="flex items-center gap-4 text-sm text-gray-600">
+                              <div className="flex items-center gap-4 text-sm text-muted-foreground">
                                 <motion.div className="flex items-center gap-1" whileHover={{ scale: 1.05 }}>
                                   <Calendar className="w-4 h-4" />
                                   {experience.period}
@@ -196,7 +162,7 @@ export default function WorkPage() {
                         </CardHeader>
                         <CardContent>
                           <motion.p
-                            className="text-gray-700 mb-6 leading-relaxed"
+                            className="text-muted-foreground mb-6 leading-relaxed"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ delay: 0.9 + index * 0.1 }}
@@ -207,26 +173,26 @@ export default function WorkPage() {
                           {/* Key Achievements */}
                           <div className="mb-6">
                             <motion.h4
-                              className="font-semibold text-gray-900 mb-3 flex items-center gap-2"
+                              className="font-semibold text-foreground mb-3 flex items-center gap-2"
                               initial={{ opacity: 0, x: -20 }}
                               animate={{ opacity: 1, x: 0 }}
                               transition={{ delay: 1 + index * 0.1 }}
                             >
-                              <TrendingUp className="w-4 h-4 text-green-600" />
+                              <TrendingUp className="w-4 h-4 text-green-600 dark:text-green-400" />
                               Key Achievements:
                             </motion.h4>
                             <ul className="space-y-2">
                               {experience.achievements.map((achievement, idx) => (
                                 <motion.li
                                   key={idx}
-                                  className="flex items-start gap-2 text-gray-700"
+                                  className="flex items-start gap-2 text-muted-foreground"
                                   initial={{ opacity: 0, x: -20 }}
                                   animate={{ opacity: 1, x: 0 }}
                                   transition={{ delay: 1.1 + index * 0.1 + idx * 0.05 }}
                                   whileHover={{ x: 5 }}
                                 >
                                   <motion.div
-                                    className="w-1.5 h-1.5 bg-blue-600 rounded-full mt-2 flex-shrink-0"
+                                    className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"
                                     whileHover={{ scale: 1.5 }}
                                   />
                                   {achievement}
@@ -238,7 +204,7 @@ export default function WorkPage() {
                           {/* Technologies */}
                           <div>
                             <motion.h4
-                              className="font-semibold text-gray-900 mb-3"
+                              className="font-semibold text-foreground mb-3"
                               initial={{ opacity: 0 }}
                               animate={{ opacity: 1 }}
                               transition={{ delay: 1.2 + index * 0.1 }}
@@ -257,7 +223,7 @@ export default function WorkPage() {
                                 >
                                   <Badge
                                     variant="secondary"
-                                    className="bg-blue-100 text-blue-800 hover:bg-blue-200 transition-colors cursor-pointer"
+                                    className="hover:bg-primary/20 transition-colors cursor-pointer"
                                   >
                                     {tech}
                                   </Badge>
@@ -276,7 +242,7 @@ export default function WorkPage() {
             {/* Call to Action */}
             <motion.div variants={itemVariants} className="text-center mt-16">
               <motion.div whileHover={{ y: -5, scale: 1.02 }} transition={{ type: "spring", stiffness: 300 }}>
-                <Card className="max-w-2xl mx-auto bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-2xl">
+                <Card className="max-w-2xl mx-auto bg-gradient-to-r from-primary to-primary/80 text-primary-foreground shadow-2xl">
                   <CardContent className="p-8">
                     <motion.h3
                       className="text-2xl font-bold mb-4"
@@ -287,7 +253,7 @@ export default function WorkPage() {
                       Ready to Work Together?
                     </motion.h3>
                     <motion.p
-                      className="text-blue-100 mb-6 leading-relaxed"
+                      className="text-primary-foreground/90 mb-6 leading-relaxed"
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 1.7 }}
@@ -297,7 +263,7 @@ export default function WorkPage() {
                     </motion.p>
                     <motion.a
                       href="/contact"
-                      className="inline-block bg-white text-blue-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl"
+                      className="inline-block bg-background text-foreground px-8 py-3 rounded-full font-semibold hover:bg-muted transition-all duration-300 shadow-lg hover:shadow-xl"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                       initial={{ opacity: 0, y: 20 }}

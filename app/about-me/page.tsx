@@ -50,14 +50,14 @@ export default function AboutMePage() {
       opacity: 1,
       transition: {
         duration: 0.5,
-        ease: "easeOut",
+        ease: "easeOut" as const,
       },
     },
   };
 
   return (
     <PageTransition>
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 py-20">
+      <div className="min-h-screen bg-gradient-to-br from-background to-muted py-20">
         <div className="container mx-auto px-4">
           <motion.div
             variants={containerVariants}
@@ -68,7 +68,7 @@ export default function AboutMePage() {
             {/* Header */}
             <motion.div variants={itemVariants} className="text-center mb-16">
               <motion.h1
-                className="text-4xl md:text-5xl font-bold text-gray-900 mb-4"
+                className="text-4xl md:text-5xl font-bold text-foreground mb-4"
                 initial={{ scale: 0.5, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
@@ -76,7 +76,7 @@ export default function AboutMePage() {
                 About Me
               </motion.h1>
               <motion.p
-                className="text-xl text-gray-600"
+                className="text-xl text-muted-foreground"
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.2, duration: 0.6 }}
@@ -125,7 +125,7 @@ export default function AboutMePage() {
                           <h2 className="text-2xl font-bold mb-1">
                             Gabriel Paor
                           </h2>
-                          <p className="text-blue-200">
+                          <p className="text-primary-foreground/90">
                             React Front-End Developer
                           </p>
                         </motion.div>
@@ -147,22 +147,22 @@ export default function AboutMePage() {
                           {
                             icon: MapPin,
                             text: "Quezon City, PH",
-                            color: "text-blue-600",
+                            color: "text-primary",
                           },
                           {
                             icon: Calendar,
-                            text: "2+ years experience",
-                            color: "text-green-600",
+                            text: "3+ years experience",
+                            color: "text-green-600 dark:text-green-400",
                           },
-                          {
-                            icon: Coffee,
-                            text: "Coffee enthusiast",
-                            color: "text-amber-600",
-                          },
+                          // {
+                          //   icon: Coffee,
+                          //   text: "Coffee enthusiast",
+                          //   color: "text-amber-600",
+                          // },
                           {
                             icon: Gamepad2,
                             text: "Gamer at heart",
-                            color: "text-red-600",
+                            color: "text-red-600 dark:text-red-400",
                           },
                         ].map((item, index) => (
                           <motion.div
@@ -174,11 +174,11 @@ export default function AboutMePage() {
                             whileHover={{ x: 5 }}
                           >
                             <div
-                              className={`p-2 bg-gray-100 rounded-full ${item.color}`}
+                              className={`p-2 bg-muted rounded-full ${item.color}`}
                             >
                               <item.icon className="w-4 h-4" />
                             </div>
-                            <span className="text-gray-700">{item.text}</span>
+                            <span className="text-foreground">{item.text}</span>
                           </motion.div>
                         ))}
                       </div>
@@ -198,7 +198,7 @@ export default function AboutMePage() {
                   <Card className="shadow-lg hover:shadow-xl transition-all duration-300">
                     <CardContent className="p-6">
                       <motion.h3
-                        className="text-2xl font-bold text-gray-900 mb-4"
+                        className="text-2xl font-bold text-foreground mb-4"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.5 }}
@@ -206,7 +206,7 @@ export default function AboutMePage() {
                         My Story
                       </motion.h3>
                       <motion.div
-                        className="space-y-4 text-gray-700 leading-relaxed"
+                        className="space-y-4 text-muted-foreground leading-relaxed"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.7 }}
@@ -248,7 +248,7 @@ export default function AboutMePage() {
                   <Card className="shadow-lg hover:shadow-xl transition-all duration-300">
                     <CardContent className="p-6">
                       <motion.h3
-                        className="text-2xl font-bold text-gray-900 mb-4"
+                        className="text-2xl font-bold text-foreground mb-4"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.9 }}
@@ -267,7 +267,7 @@ export default function AboutMePage() {
                           >
                             <Badge
                               variant="secondary"
-                              className="bg-blue-100 text-blue-800 hover:bg-blue-200 transition-colors cursor-pointer"
+                              className="hover:bg-primary/20 transition-colors cursor-pointer"
                             >
                               {skill}
                             </Badge>
@@ -284,10 +284,10 @@ export default function AboutMePage() {
                   whileHover={{ y: -5 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
-                  <Card className="shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-r from-blue-50 to-indigo-50">
+                  <Card className="shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-r from-muted/50 to-accent/50">
                     <CardContent className="p-6">
                       <motion.h3
-                        className="text-2xl font-bold text-gray-900 mb-4"
+                        className="text-2xl font-bold text-foreground mb-4"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 1.2 }}
@@ -295,7 +295,7 @@ export default function AboutMePage() {
                         My Philosophy
                       </motion.h3>
                       <motion.blockquote
-                        className="text-lg text-gray-700 italic border-l-4 border-blue-600 pl-4"
+                        className="text-lg text-muted-foreground italic border-l-4 border-primary pl-4"
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 1.4 }}
@@ -315,16 +315,16 @@ export default function AboutMePage() {
                   variants={itemVariants}
                 >
                   {[
-                    { icon: Code, color: "text-blue-600", bg: "bg-blue-100" },
+                    { icon: Code, color: "text-primary", bg: "bg-primary/20" },
                     {
                       icon: Palette,
-                      color: "text-purple-600",
-                      bg: "bg-purple-100",
+                      color: "text-purple-600 dark:text-purple-400",
+                      bg: "bg-purple-100 dark:bg-purple-900/30",
                     },
                     {
                       icon: Zap,
-                      color: "text-yellow-600",
-                      bg: "bg-yellow-100",
+                      color: "text-yellow-600 dark:text-yellow-400",
+                      bg: "bg-yellow-100 dark:bg-yellow-900/30",
                     },
                   ].map((item, index) => (
                     <motion.div
