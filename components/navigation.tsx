@@ -82,12 +82,12 @@ export default function Navigation() {
                 </Link>
               </motion.div>
             ))}
-            <ThemeToggle />
+            {/* <ThemeToggle /> */}
           </div>
 
           {/* Mobile Navigation Controls */}
           <div className="md:hidden flex items-center gap-2">
-            <ThemeToggle />
+            {/* <ThemeToggle /> */}
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}

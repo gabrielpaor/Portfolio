@@ -93,21 +93,46 @@ export default function ContactPage() {
 
   return (
     <PageTransition>
-      <div className="min-h-screen bg-gradient-to-br from-background to-muted py-20">
-        <div className="container mx-auto px-4">
+      <div className="min-h-screen bg-gradient-to-br from-slate-950 via-blue-950 to-indigo-950 py-20 relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-blue-900/20 via-transparent to-transparent" />
+        <motion.div
+          className="absolute top-40 right-20 w-80 h-80 bg-indigo-500/10 rounded-full blur-3xl"
+          animate={{ y: [-20, 20, -20], opacity: [0.3, 0.5, 0.3] }}
+          transition={{ duration: 8, repeat: Infinity }}
+        />
+        <motion.div
+          className="absolute bottom-20 left-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"
+          animate={{ y: [30, -30, 30], opacity: [0.2, 0.4, 0.2] }}
+          transition={{ duration: 10, repeat: Infinity }}
+        />
+
+        <div className="container mx-auto px-4 relative z-10">
           <div>
             {/* Header */}
             <div className="text-center mb-16">
+              <motion.div
+                className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 backdrop-blur-sm rounded-full border border-primary/20 mb-6"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+              >
+                <Mail className="w-4 h-4 text-primary" />
+                <span className="text-sm font-medium text-primary">Let's Connect</span>
+              </motion.div>
               <motion.h1
-                className="text-4xl md:text-5xl font-bold text-foreground mb-4"
+                className="text-4xl md:text-6xl font-bold text-white mb-4"
                 initial={{ scale: 0.5, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
               >
-                Get In Touch
+                Get In{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400">
+                  Touch
+                </span>
               </motion.h1>
               <motion.p
-                className="text-xl text-muted-foreground max-w-2xl mx-auto"
+                className="text-xl text-gray-300 max-w-2xl mx-auto"
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.2, duration: 0.6 }}
@@ -120,10 +145,10 @@ export default function ContactPage() {
             <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12">
               {/* Contact Form */}
               <div>
-                <Card className="shadow-xl hover:shadow-2xl transition-all duration-300 backdrop-blur-sm">
+                <Card className="shadow-xl hover:shadow-2xl transition-all duration-300 backdrop-blur-md bg-white/5 border-white/10">
                   <CardHeader>
-                    <CardTitle className="text-2xl font-bold text-foreground flex items-center gap-2">
-                      <MessageCircle className="w-6 h-6 text-primary" />
+                    <CardTitle className="text-2xl font-bold text-white flex items-center gap-2">
+                      <MessageCircle className="w-6 h-6 text-blue-400" />
                       Send Me a Message
                     </CardTitle>
                   </CardHeader>
@@ -141,7 +166,7 @@ export default function ContactPage() {
                         >
                           <label
                             htmlFor="name"
-                            className="block text-sm font-medium text-foreground mb-2"
+                            className="block text-sm font-medium text-gray-200 mb-2"
                           >
                             Name *
                           </label>
@@ -153,7 +178,7 @@ export default function ContactPage() {
                             value={formData.name}
                             onChange={handleChange}
                             placeholder="Your full name"
-                            className="w-full transition-all duration-300 focus:scale-105"
+                            className="w-full transition-all duration-300 focus:scale-105 bg-white/10 border-white/20 text-white placeholder:text-gray-400"
                           />
                         </motion.div>
                         <motion.div
@@ -163,7 +188,7 @@ export default function ContactPage() {
                         >
                           <label
                             htmlFor="email"
-                            className="block text-sm font-medium text-foreground mb-2"
+                            className="block text-sm font-medium text-gray-200 mb-2"
                           >
                             Email *
                           </label>
@@ -175,7 +200,7 @@ export default function ContactPage() {
                             value={formData.email}
                             onChange={handleChange}
                             placeholder="your.email@example.com"
-                            className="w-full transition-all duration-300 focus:scale-105"
+                            className="w-full transition-all duration-300 focus:scale-105 bg-white/10 border-white/20 text-white placeholder:text-gray-400"
                           />
                         </motion.div>
                       </div>
@@ -187,7 +212,7 @@ export default function ContactPage() {
                       >
                         <label
                           htmlFor="subject"
-                          className="block text-sm font-medium text-foreground mb-2"
+                          className="block text-sm font-medium text-gray-200 mb-2"
                         >
                           Subject *
                         </label>
@@ -199,7 +224,7 @@ export default function ContactPage() {
                           value={formData.subject}
                           onChange={handleChange}
                           placeholder="What's this about?"
-                          className="w-full transition-all duration-300 focus:scale-105"
+                          className="w-full transition-all duration-300 focus:scale-105 bg-white/10 border-white/20 text-white placeholder:text-gray-400"
                         />
                       </motion.div>
 
@@ -210,7 +235,7 @@ export default function ContactPage() {
                       >
                         <label
                           htmlFor="message"
-                          className="block text-sm font-medium text-foreground mb-2"
+                          className="block text-sm font-medium text-gray-200 mb-2"
                         >
                           Message *
                         </label>
@@ -222,7 +247,7 @@ export default function ContactPage() {
                           onChange={handleChange}
                           placeholder="Tell me about your project or just say hello!"
                           rows={6}
-                          className="w-full transition-all duration-300 focus:scale-105"
+                          className="w-full transition-all duration-300 focus:scale-105 bg-white/10 border-white/20 text-white placeholder:text-gray-400"
                         />
                       </motion.div>
 
@@ -236,7 +261,7 @@ export default function ContactPage() {
                         <Button
                           type="submit"
                           disabled={isSubmitting}
-                          className="w-full py-3 shadow-lg hover:shadow-xl transition-all duration-300"
+                          className="w-full py-3 shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700"
                         >
                           {isSubmitting ? (
                             <>
@@ -268,9 +293,9 @@ export default function ContactPage() {
               <div className="space-y-8">
                 {/* Contact Details */}
                 <div>
-                  <Card className="shadow-xl hover:shadow-2xl transition-all duration-300 backdrop-blur-sm">
+                  <Card className="shadow-xl hover:shadow-2xl transition-all duration-300 backdrop-blur-md bg-white/5 border-white/10">
                     <CardHeader>
-                      <CardTitle className="text-2xl font-bold text-foreground">
+                      <CardTitle className="text-2xl font-bold text-white">
                         Contact Information
                       </CardTitle>
                     </CardHeader>
@@ -280,22 +305,22 @@ export default function ContactPage() {
                           icon: Mail,
                           title: "Email",
                           info: "gabrielpaor07@gmail.com",
-                          color: "text-blue-600",
-                          bg: "bg-blue-100",
+                          color: "text-blue-400",
+                          bg: "bg-blue-500/20",
                         },
                         {
                           icon: Phone,
                           title: "Phone",
                           info: "+639363909904",
-                          color: "text-green-600",
-                          bg: "bg-green-100",
+                          color: "text-green-400",
+                          bg: "bg-green-500/20",
                         },
                         {
                           icon: MapPin,
                           title: "Location",
                           info: "Quezon City, Philippines",
-                          color: "text-purple-600",
-                          bg: "bg-purple-100",
+                          color: "text-purple-400",
+                          bg: "bg-purple-500/20",
                         },
                       ].map((item, index) => (
                         <motion.div
@@ -314,10 +339,10 @@ export default function ContactPage() {
                             <item.icon className="w-6 h-6" />
                           </motion.div>
                           <div>
-                            <h3 className="font-semibold text-foreground">
+                            <h3 className="font-semibold text-white">
                               {item.title}
                             </h3>
-                            <p className="text-muted-foreground">{item.info}</p>
+                            <p className="text-gray-300">{item.info}</p>
                           </div>
                         </motion.div>
                       ))}
@@ -327,9 +352,9 @@ export default function ContactPage() {
 
                 {/* Social Links */}
                 <div>
-                  <Card className="shadow-xl hover:shadow-2xl transition-all duration-300 backdrop-blur-sm">
+                  <Card className="shadow-xl hover:shadow-2xl transition-all duration-300 backdrop-blur-md bg-white/5 border-white/10">
                     <CardHeader>
-                      <CardTitle className="text-2xl font-bold text-foreground">
+                      <CardTitle className="text-2xl font-bold text-white">
                         Connect With Me
                       </CardTitle>
                     </CardHeader>
@@ -340,19 +365,19 @@ export default function ContactPage() {
                             icon: Github,
                             href: "https://github.com/gabrielpaor",
                             label: "GitHub",
-                            color: "bg-gray-900 hover:bg-gray-800 dark:bg-gray-700 dark:hover:bg-gray-600",
+                            color: "bg-gray-700 hover:bg-gray-600",
                           },
                           {
                             icon: Linkedin,
                             href: "https://www.linkedin.com/in/gabriel-john-paor-ba0bb4235/",
                             label: "LinkedIn",
-                            color: "bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-600",
+                            color: "bg-blue-600 hover:bg-blue-500",
                           },
                           {
                             icon: Facebook,
                             href: "https://www.facebook.com/gabriel.paor/",
                             label: "Facebook",
-                            color: "bg-blue-700 hover:bg-blue-500 dark:bg-blue-800 dark:hover:bg-blue-600",
+                            color: "bg-blue-700 hover:bg-blue-600",
                           },
                         ].map((social, index) => (
                           <motion.a
@@ -379,7 +404,7 @@ export default function ContactPage() {
                         ))}
                       </div>
                       <motion.p
-                        className="text-muted-foreground"
+                        className="text-gray-300"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 1.1 }}
@@ -393,7 +418,7 @@ export default function ContactPage() {
 
                 {/* Availability */}
                 <div>
-                  <Card className="bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-950/30 dark:to-blue-950/30 border-green-200 dark:border-green-800 shadow-xl hover:shadow-2xl transition-all duration-300">
+                  <Card className="bg-gradient-to-r from-green-900/30 to-blue-900/30 border-green-500/30 shadow-xl hover:shadow-2xl transition-all duration-300 backdrop-blur-md">
                     <CardContent className="p-6">
                       <motion.div
                         className="flex items-center gap-3 mb-3"
@@ -402,7 +427,7 @@ export default function ContactPage() {
                         transition={{ delay: 1.2 }}
                       >
                         <motion.div
-                          className="w-3 h-3 bg-green-500 rounded-full"
+                          className="w-3 h-3 bg-green-500 rounded-full shadow-lg shadow-green-500/50"
                           animate={{
                             scale: [1, 1.2, 1],
                             opacity: [1, 0.7, 1],
@@ -412,12 +437,12 @@ export default function ContactPage() {
                             repeat: Number.POSITIVE_INFINITY,
                           }}
                         />
-                        <h3 className="font-semibold text-foreground">
+                        <h3 className="font-semibold text-white">
                           Currently Available
                         </h3>
                       </motion.div>
                       <motion.p
-                        className="text-muted-foreground leading-relaxed"
+                        className="text-gray-300 leading-relaxed"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 1.4 }}

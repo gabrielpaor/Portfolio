@@ -3,7 +3,7 @@
 import { motion } from "framer-motion"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Calendar, MapPin, Building, TrendingUp } from "lucide-react"
+import { Calendar, MapPin, Building, TrendingUp, Briefcase, Award } from "lucide-react"
 import PageTransition from "@/components/page-transition"
 
 export default function WorkPage() {
@@ -69,21 +69,46 @@ export default function WorkPage() {
 
   return (
     <PageTransition>
-      <div className="min-h-screen bg-gradient-to-br from-background to-muted py-20">
-        <div className="container mx-auto px-4">
+      <div className="min-h-screen bg-gradient-to-br from-slate-950 via-blue-950 to-indigo-950 py-20 relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-900/20 via-transparent to-transparent" />
+        <motion.div
+          className="absolute top-20 right-10 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl"
+          animate={{ y: [-20, 20, -20], opacity: [0.3, 0.5, 0.3] }}
+          transition={{ duration: 8, repeat: Infinity }}
+        />
+        <motion.div
+          className="absolute bottom-40 left-10 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl"
+          animate={{ y: [20, -20, 20], opacity: [0.2, 0.4, 0.2] }}
+          transition={{ duration: 10, repeat: Infinity }}
+        />
+        
+        <div className="container mx-auto px-4 relative z-10">
           <motion.div variants={containerVariants} initial="hidden" animate="visible">
             {/* Header */}
             <motion.div variants={itemVariants} className="text-center mb-16">
+              <motion.div
+                className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 backdrop-blur-sm rounded-full border border-primary/20 mb-6"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+              >
+                <Briefcase className="w-4 h-4 text-primary" />
+                <span className="text-sm font-medium text-primary">Professional Journey</span>
+              </motion.div>
               <motion.h1
-                className="text-4xl md:text-5xl font-bold text-foreground mb-4"
+                className="text-4xl md:text-6xl font-bold text-white mb-4"
                 initial={{ scale: 0.5, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
               >
-                Work Experience
+                Work{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400">
+                  Experience
+                </span>
               </motion.h1>
               <motion.p
-                className="text-xl text-muted-foreground max-w-2xl mx-auto"
+                className="text-xl text-gray-300 max-w-2xl mx-auto"
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.2, duration: 0.6 }}
@@ -97,7 +122,7 @@ export default function WorkPage() {
               <div className="relative">
                 {/* Timeline Line */}
                 <motion.div
-                  className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary/50 to-primary hidden md:block"
+                  className="absolute left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-500 via-indigo-500 to-purple-500 hidden md:block rounded-full"
                   initial={{ scaleY: 0 }}
                   animate={{ scaleY: 1 }}
                   transition={{ duration: 1, delay: 0.5 }}
@@ -108,11 +133,11 @@ export default function WorkPage() {
                   <motion.div key={experience.id} variants={itemVariants} className="relative mb-12">
                     {/* Timeline Dot */}
                     <motion.div
-                      className="absolute left-6 w-4 h-4 bg-primary rounded-full border-4 border-background shadow-lg hidden md:block z-10"
+                      className="absolute left-5 w-6 h-6 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full border-4 border-slate-900 shadow-lg shadow-blue-500/30 hidden md:block z-10"
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
                       transition={{ delay: 0.7 + index * 0.2, type: "spring", stiffness: 300 }}
-                      whileHover={{ scale: 1.2 }}
+                      whileHover={{ scale: 1.3 }}
                     />
 
                     {/* Content */}
@@ -121,13 +146,13 @@ export default function WorkPage() {
                       whileHover={{ y: -5 }}
                       transition={{ type: "spring", stiffness: 300 }}
                     >
-                      <Card className="shadow-lg hover:shadow-2xl transition-all duration-300 backdrop-blur-sm">
+                      <Card className="shadow-xl hover:shadow-2xl transition-all duration-300 backdrop-blur-md bg-white/5 border-white/10 hover:border-blue-500/30">
                         <CardHeader>
                           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                             <div>
-                              <CardTitle className="text-xl font-bold text-foreground mb-2">{experience.title}</CardTitle>
+                              <CardTitle className="text-xl font-bold text-white mb-2">{experience.title}</CardTitle>
                               <motion.div
-                                className="flex items-center gap-2 text-primary font-semibold"
+                                className="flex items-center gap-2 text-blue-400 font-semibold"
                                 whileHover={{ x: 5 }}
                               >
                                 <Building className="w-4 h-4" />
@@ -137,17 +162,16 @@ export default function WorkPage() {
                             <div className="flex flex-col md:items-end gap-2">
                               <motion.div whileHover={{ scale: 1.05 }}>
                                 <Badge
-                                  variant="outline"
                                   className={`w-fit ${
                                     experience.type === "Full-time"
-                                      ? "border-green-500 text-green-700"
-                                      : "border-blue-500 text-blue-700"
+                                      ? "bg-green-500/20 text-green-400 border-green-500/30"
+                                      : "bg-blue-500/20 text-blue-400 border-blue-500/30"
                                   }`}
                                 >
                                   {experience.type}
                                 </Badge>
                               </motion.div>
-                              <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                              <div className="flex items-center gap-4 text-sm text-gray-400">
                                 <motion.div className="flex items-center gap-1" whileHover={{ scale: 1.05 }}>
                                   <Calendar className="w-4 h-4" />
                                   {experience.period}
@@ -162,7 +186,7 @@ export default function WorkPage() {
                         </CardHeader>
                         <CardContent>
                           <motion.p
-                            className="text-muted-foreground mb-6 leading-relaxed"
+                            className="text-gray-300 mb-6 leading-relaxed"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ delay: 0.9 + index * 0.1 }}
@@ -173,19 +197,19 @@ export default function WorkPage() {
                           {/* Key Achievements */}
                           <div className="mb-6">
                             <motion.h4
-                              className="font-semibold text-foreground mb-3 flex items-center gap-2"
+                              className="font-semibold text-white mb-3 flex items-center gap-2"
                               initial={{ opacity: 0, x: -20 }}
                               animate={{ opacity: 1, x: 0 }}
                               transition={{ delay: 1 + index * 0.1 }}
                             >
-                              <TrendingUp className="w-4 h-4 text-green-600 dark:text-green-400" />
+                              <TrendingUp className="w-4 h-4 text-green-400" />
                               Key Achievements:
                             </motion.h4>
                             <ul className="space-y-2">
                               {experience.achievements.map((achievement, idx) => (
                                 <motion.li
                                   key={idx}
-                                  className="flex items-start gap-2 text-muted-foreground"
+                                  className="flex items-start gap-2 text-gray-300"
                                   initial={{ opacity: 0, x: -20 }}
                                   animate={{ opacity: 1, x: 0 }}
                                   transition={{ delay: 1.1 + index * 0.1 + idx * 0.05 }}
@@ -204,7 +228,7 @@ export default function WorkPage() {
                           {/* Technologies */}
                           <div>
                             <motion.h4
-                              className="font-semibold text-foreground mb-3"
+                              className="font-semibold text-white mb-3"
                               initial={{ opacity: 0 }}
                               animate={{ opacity: 1 }}
                               transition={{ delay: 1.2 + index * 0.1 }}
@@ -222,8 +246,7 @@ export default function WorkPage() {
                                   whileTap={{ scale: 0.95 }}
                                 >
                                   <Badge
-                                    variant="secondary"
-                                    className="hover:bg-primary/20 transition-colors cursor-pointer"
+                                    className="bg-blue-500/20 text-blue-300 border-blue-500/30 hover:bg-blue-500/30 transition-colors cursor-pointer"
                                   >
                                     {tech}
                                   </Badge>
@@ -242,10 +265,19 @@ export default function WorkPage() {
             {/* Call to Action */}
             <motion.div variants={itemVariants} className="text-center mt-16">
               <motion.div whileHover={{ y: -5, scale: 1.02 }} transition={{ type: "spring", stiffness: 300 }}>
-                <Card className="max-w-2xl mx-auto bg-gradient-to-r from-primary to-primary/80 text-primary-foreground shadow-2xl">
+                <Card className="max-w-2xl mx-auto bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 border-0 shadow-2xl shadow-blue-500/20">
                   <CardContent className="p-8">
+                    <motion.div
+                      className="inline-flex items-center gap-2 px-3 py-1 bg-white/20 rounded-full mb-4"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 1.4 }}
+                    >
+                      <Award className="w-4 h-4 text-white" />
+                      <span className="text-sm text-white">Open to Opportunities</span>
+                    </motion.div>
                     <motion.h3
-                      className="text-2xl font-bold mb-4"
+                      className="text-2xl font-bold mb-4 text-white"
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 1.5 }}
@@ -253,7 +285,7 @@ export default function WorkPage() {
                       Ready to Work Together?
                     </motion.h3>
                     <motion.p
-                      className="text-primary-foreground/90 mb-6 leading-relaxed"
+                      className="text-white/90 mb-6 leading-relaxed"
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 1.7 }}
@@ -263,7 +295,7 @@ export default function WorkPage() {
                     </motion.p>
                     <motion.a
                       href="/contact"
-                      className="inline-block bg-background text-foreground px-8 py-3 rounded-full font-semibold hover:bg-muted transition-all duration-300 shadow-lg hover:shadow-xl"
+                      className="inline-block bg-white text-indigo-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                       initial={{ opacity: 0, y: 20 }}
