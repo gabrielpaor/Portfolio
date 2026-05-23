@@ -1,15 +1,17 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Code2 } from "lucide-react";
+import { Menu, X, Code2, ChevronRight } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isNavVisible, setIsNavVisible] = useState(true);
+  const lastScrollY = useRef(0);
   const pathname = usePathname();
 
   const navItems = [
@@ -22,12 +24,42 @@ export default function Navigation() {
 
   const isActive = (href: string) => pathname === href;
 
+  useEffect(() => {
+    lastScrollY.current = window.scrollY;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const scrolledDistance = Math.abs(currentScrollY - lastScrollY.current);
+
+      if (scrolledDistance < 6) {
+        return;
+      }
+
+      const isScrollingUp = currentScrollY < lastScrollY.current;
+      const isNearTop = currentScrollY < 16;
+      setIsNavVisible(isScrollingUp || isNearTop || isOpen);
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [isOpen]);
+
+  useEffect(() => {
+    if (isOpen) {
+      setIsNavVisible(true);
+    }
+  }, [isOpen]);
+
   return (
     <motion.nav
       initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border"
+      animate={{ y: isNavVisible ? 0 : -96 }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
+      className="fixed top-0 left-0 right-0 z-50 bg-transparent"
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
@@ -96,6 +128,10 @@ export default function Navigation() {
                 variant="ghost"
                 size="icon"
                 onClick={() => setIsOpen(!isOpen)}
+                aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+                aria-expanded={isOpen}
+                aria-controls="mobile-navigation"
+                className="h-11 w-11 border border-border/60 bg-background/30 text-foreground shadow-sm backdrop-blur-sm transition-all hover:bg-background/60 hover:border-primary/60 focus-visible:ring-2 focus-visible:ring-primary/50"
               >
               <AnimatePresence mode="wait">
                 {isOpen ? (
@@ -129,13 +165,14 @@ export default function Navigation() {
         <AnimatePresence>
           {isOpen && (
             <motion.div
+              id="mobile-navigation"
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
-              className="md:hidden overflow-hidden border-t border-border"
+              className="md:hidden overflow-hidden rounded-2xl border border-border/70 bg-background/65 backdrop-blur-md shadow-xl"
             >
-              <div className="py-4 space-y-2">
+              <div className="p-3 space-y-2">
                 {navItems.map((item, index) => (
                   <motion.div
                     key={item.href}
@@ -145,14 +182,19 @@ export default function Navigation() {
                   >
                     <Link
                       href={item.href}
-                      className={`block px-4 py-2 text-sm font-medium transition-colors hover:text-primary hover:bg-accent rounded-lg ${
+                      className={`group flex items-center justify-between rounded-xl border px-4 py-3 text-sm font-medium transition-all ${
                         isActive(item.href)
-                          ? "text-primary bg-accent"
-                          : "text-muted-foreground"
+                          ? "border-primary/40 bg-primary/10 text-primary"
+                          : "border-transparent text-muted-foreground hover:border-border/80 hover:bg-accent/70 hover:text-foreground"
                       }`}
                       onClick={() => setIsOpen(false)}
                     >
-                      {item.label}
+                      <span>{item.label}</span>
+                      <ChevronRight
+                        className={`h-4 w-4 transition-transform group-hover:translate-x-0.5 ${
+                          isActive(item.href) ? "opacity-100" : "opacity-50"
+                        }`}
+                      />
                     </Link>
                   </motion.div>
                 ))}

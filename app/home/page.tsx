@@ -195,12 +195,7 @@ export default function HomePage() {
 
   return (
     <PageTransition>
-      <div
-        className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-blue-950 to-indigo-950"
-        style={{
-          maxHeight: 'calc(100vh - 64px)',
-        }}
-      >
+      <div className="relative min-h-[calc(100vh)] overflow-x-hidden bg-gradient-to-br from-slate-950 via-blue-950 to-indigo-950">
         {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-900/20 via-transparent to-transparent z-[1]"></div>
         
@@ -241,15 +236,6 @@ export default function HomePage() {
           >
             {/* Main Heading */}
             <motion.div variants={itemVariants} className="mb-4">
-              <motion.div
-                className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 backdrop-blur-sm rounded-full border border-primary/20 mb-6"
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-              >
-                <Sparkles className="w-4 h-4 text-primary" />
-                <span className="text-sm font-medium text-primary">Available for opportunities</span>
-              </motion.div>
               
               <motion.h1
                 className="text-5xl md:text-7xl lg:text-8xl font-bold text-foreground mb-4"

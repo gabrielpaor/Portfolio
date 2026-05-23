@@ -16,22 +16,24 @@ export default function ProjectsPage() {
       title: "Qwote - E-procurement Web App",
       description:
         "A comprehensive admin dashboard for managing e-commerce operations with real-time analytics, inventory management, and order tracking. Built with modern React patterns and beautiful animations.",
-      image: "/placeholder.svg?height=300&width=500",
+      image: "/project-images/qwote.png",
       technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
-      liveUrl: "#",
+      liveUrl: "https://fhc.qwote.ph/login",
       githubUrl: "#",
       featured: true,
+      hideCode: true,
     },
     {
       id: 2,
       title: "Grinea - E-procurement Web App",
       description:
         "A collaborative task management application with drag-and-drop functionality, team collaboration features, real-time updates, and progress tracking.",
-      image: "/placeholder.svg?height=300&width=500",
+      image: "/project-images/grinea.png",
       technologies: ["React", "Redux", "Node.js", "Socket.io", "MongoDB"],
       liveUrl: "#",
       githubUrl: "#",
       featured: true,
+      hideCode: true,
     },
     {
       id: 3,
@@ -43,6 +45,7 @@ export default function ProjectsPage() {
       liveUrl: "#",
       githubUrl: "#",
       featured: false,
+      hideCode: false,
     },
     {
       id: 4,
@@ -54,6 +57,7 @@ export default function ProjectsPage() {
       liveUrl: "#",
       githubUrl: "#",
       featured: false,
+      hideCode: false,
     },
     {
       id: 5,
@@ -65,6 +69,7 @@ export default function ProjectsPage() {
       liveUrl: "#",
       githubUrl: "#",
       featured: false,
+      hideCode: false,
     },
     {
       id: 6,
@@ -76,6 +81,7 @@ export default function ProjectsPage() {
       liveUrl: "#",
       githubUrl: "#",
       featured: false,
+      hideCode: false,
     },
   ]
 
@@ -170,7 +176,7 @@ export default function ProjectsPage() {
                   <motion.div
                     key={project.id}
                     variants={itemVariants}
-                    whileHover={{ y: -10, scale: 1.02 }}
+                    whileHover={{ y: -10, scale: 1 }}
                     transition={{ type: "spring", stiffness: 300 }}
                   >
                     <Card className="overflow-hidden shadow-xl hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-300 backdrop-blur-md bg-white/5 border-white/10 hover:border-blue-500/30 h-full flex flex-col">
@@ -220,20 +226,22 @@ export default function ProjectsPage() {
                       <CardFooter className="flex gap-2">
                         <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                           <Button asChild size="sm" className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 border-0">
-                            <Link href={project.liveUrl}>
+                            <Link href={project.liveUrl} target="_blank">
                               <ExternalLink className="w-4 h-4 mr-2" />
                               Live Demo
                             </Link>
                           </Button>
                         </motion.div>
-                        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                          <Button variant="outline" size="sm" asChild className="border-white/20 text-white hover:bg-white/10">
-                            <Link href={project.githubUrl}>
-                              <Github className="w-4 h-4 mr-2" />
-                              Code
-                            </Link>
-                          </Button>
-                        </motion.div>
+                        {!project.hideCode && (
+                          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                            <Button variant="outline" size="sm" asChild className="border-white/20 text-white hover:bg-white/10">
+                              <Link href={project.githubUrl}>
+                                <Github className="w-4 h-4 mr-2" />
+                                Code
+                              </Link>
+                            </Button>
+                          </motion.div>
+                        )}
                       </CardFooter>
                     </Card>
                   </motion.div>
@@ -294,7 +302,7 @@ export default function ProjectsPage() {
                       <CardFooter className="flex gap-2">
                         <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="flex-1">
                           <Button asChild size="sm" className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 border-0">
-                            <Link href={project.liveUrl}>
+                            <Link href={project.liveUrl} target="_blank">
                               <ExternalLink className="w-4 h-4 mr-2" />
                               Demo
                             </Link>
