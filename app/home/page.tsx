@@ -276,8 +276,7 @@ export default function HomePage() {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5, duration: 0.8 }}
               >
-                Crafting beautiful, interactive, and user-centered web
-                experiences that make a difference. Let's build something amazing together.
+               Building reliable, user-centered web applications through clean component architecture and seamless API integration. Let’s build something meaningful together.
               </motion.p>
             </motion.div>
 
