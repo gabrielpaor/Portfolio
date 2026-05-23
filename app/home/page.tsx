@@ -19,7 +19,7 @@ const roles = [
 
 const techStack = [
   { name: "React", color: "from-cyan-500 to-blue-500" },
-  { name: "Next.js", color: "from-gray-700 to-gray-900 dark:from-gray-200 dark:to-white" },
+  { name: "Next.js", color: "from-gray-600 to-gray-800" },
   { name: "TypeScript", color: "from-blue-600 to-blue-800" },
   { name: "Tailwind CSS", color: "from-teal-400 to-cyan-500" },
   { name: "Framer Motion", color: "from-purple-500 to-pink-500" },

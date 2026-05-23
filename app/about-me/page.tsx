@@ -27,11 +27,14 @@ export default function AboutMePage() {
     "HTML5",
     "CSS3",
     "Tailwind CSS",
-    "Framer Motion",
+    "Mantine UI",
     "Node.js",
     "Git",
     "Figma",
     "Redux",
+    "React Native",
+    "Expo",
+    "RTK Query"
   ];
 
   const containerVariants = {
@@ -212,7 +215,37 @@ export default function AboutMePage() {
                     </CardContent>
                   </Card>
                 </motion.div>
+
+                 {/* Philosophy */}
+                <motion.div
+                  variants={itemVariants}
+                  whileHover={{ y: -5 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <Card className="shadow-lg hover:shadow-xl transition-all duration-300 backdrop-blur-md bg-gradient-to-r from-blue-900/30 to-indigo-900/30 border-blue-500/20">
+                    <CardContent className="p-6">
+                      <motion.div
+                        className="flex items-center gap-2 mb-4"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 1.2 }}
+                      >
+                        <Quote className="w-6 h-6 text-blue-400" />
+                        <h3 className="text-2xl font-bold text-white">My Philosophy</h3>
+                      </motion.div>
+                      <motion.blockquote
+                        className="text-lg text-gray-300 italic border-l-4 border-blue-500 pl-4"
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 1.4 }}
+                      >
+                        "Adaptability is Key – Being flexible matters more than knowing everything."
+                      </motion.blockquote>
+                    </CardContent>
+                  </Card>
+                </motion.div>
               </motion.div>
+              
 
               {/* Right Column - About Content */}
               <div className="space-y-8">
@@ -239,28 +272,15 @@ export default function AboutMePage() {
                         transition={{ delay: 0.7 }}
                       >
                         <p>
-                          Hello! I'm Gabriel, a passionate front-end developer
-                          with over 2 years of experience creating beautiful,
-                          functional, and user-centered digital experiences. My
-                          journey into web development started during college
-                          when I built my first interactive website and fell in
-                          love with the magic of bringing ideas to life through
-                          code.
+                          Hello! I’m Gabriel, a passionate front-end developer with over 3 years of experience building beautiful, functional, and user-centered digital experiences. My journey into web development started back in college when I created my first interactive website. That experience sparked my interest in turning ideas into reality through code, and since then, I’ve been continuously growing in this field.
                         </p>
                         <p>
-                          I specialize in React and modern JavaScript
-                          frameworks, with a keen eye for design and user
-                          experience. I believe that great software is not just
-                          about clean code, but about solving real problems and
-                          creating delightful experiences that users love to
-                          interact with.
+                          I specialize in React and modern JavaScript frameworks, with a strong focus on building scalable and maintainable user interfaces. I enjoy working with component-driven architecture and always aim to write clean, reusable, and efficient code. Alongside development, I also pay close attention to design details to ensure that every interface feels intuitive and visually engaging.
                         </p>
                         <p>
-                          When I'm not coding, you can find me exploring new
-                          coffee shops around Quezon City, gaming, or riding my
-                          motorcycle. I'm always eager to learn new technologies
-                          and take on challenging projects.
+                          Beyond just writing code, I believe great software is about solving real-world problems and improving how people interact with technology. I always try to put myself in the user’s perspective to create experiences that are not only functional but also enjoyable to use.
                         </p>
+                        <p>Over the years, I’ve worked on various projects that helped me strengthen my skills in frontend development, problem-solving, and collaboration. I enjoy working in team environments where I can learn from others while also contributing my own ideas and perspective.</p>
                       </motion.div>
                     </CardContent>
                   </Card>
@@ -300,38 +320,6 @@ export default function AboutMePage() {
                           </motion.div>
                         ))}
                       </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-
-                {/* Philosophy */}
-                <motion.div
-                  variants={itemVariants}
-                  whileHover={{ y: -5 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  <Card className="shadow-lg hover:shadow-xl transition-all duration-300 backdrop-blur-md bg-gradient-to-r from-blue-900/30 to-indigo-900/30 border-blue-500/20">
-                    <CardContent className="p-6">
-                      <motion.div
-                        className="flex items-center gap-2 mb-4"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 1.2 }}
-                      >
-                        <Quote className="w-6 h-6 text-blue-400" />
-                        <h3 className="text-2xl font-bold text-white">My Philosophy</h3>
-                      </motion.div>
-                      <motion.blockquote
-                        className="text-lg text-gray-300 italic border-l-4 border-blue-500 pl-4"
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 1.4 }}
-                      >
-                        "Great design is not just what it looks like and feels
-                        like. Great design is how it works. I strive to create
-                        interfaces that are not only beautiful but also
-                        intuitive, accessible, and meaningful to every user."
-                      </motion.blockquote>
                     </CardContent>
                   </Card>
                 </motion.div>

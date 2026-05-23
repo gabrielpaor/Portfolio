@@ -12,6 +12,29 @@ export const metadata: Metadata = {
   description:
     "Portfolio of Gabriel Paor, a passionate React Front-End Developer creating beautiful, interactive web experiences",
   generator: "v0.dev",
+  icons: {
+    icon: "/project-images/thumbnail.png",
+  },
+  openGraph: {
+    title: "Gabriel Paor - React Front-End Developer",
+    description:
+      "Portfolio of Gabriel Paor, a passionate React Front-End Developer creating beautiful, interactive web experiences",
+    images: [
+      {
+        url: "/project-images/thumbnail.png",
+        width: 1200,
+        height: 630,
+        alt: "Gabriel Paor portfolio thumbnail",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Gabriel Paor - React Front-End Developer",
+    description:
+      "Portfolio of Gabriel Paor, a passionate React Front-End Developer creating beautiful, interactive web experiences",
+    images: ["/project-images/thumbnail.png"],
+  },
 };
 
 export default function RootLayout({
