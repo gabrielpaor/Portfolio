@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Github, Linkedin, Mail, Sparkles, Code2, Palette, Rocket } from "lucide-react";
+import { ArrowRight, Github, Linkedin, Mail, Sparkles, Code2, Palette, Rocket, FileText } from "lucide-react";
 import PageTransition from "@/components/page-transition";
 import { useEffect, useMemo, useState, useCallback, memo } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
@@ -238,7 +238,7 @@ export default function HomePage() {
             <motion.div variants={itemVariants} className="mb-4">
               
               <motion.h1
-                className="text-5xl md:text-7xl lg:text-8xl font-bold text-foreground mb-4"
+                className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-4"
                 initial={{ scale: 0.5, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
@@ -302,7 +302,7 @@ export default function HomePage() {
             {/* CTA Buttons */}
             <motion.div
               variants={itemVariants}
-              className="flex flex-col sm:flex-row gap-4 mb-10"
+              className="flex flex-col sm:flex-row flex-wrap justify-center gap-4 mb-10"
             >
               <motion.div
                 whileHover={{ scale: 1.05 }}
@@ -343,6 +343,22 @@ export default function HomePage() {
                   </Button>
                 </Link>
               </motion.div>
+
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <a href="/Resume.pdf" target="_blank" rel="noopener noreferrer">
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="border-2 border-primary/50 hover:border-primary hover:bg-primary/10 px-8 py-6 text-lg rounded-full transition-all duration-300 backdrop-blur-sm"
+                  >
+                    <FileText className="w-5 h-5 mr-2" />
+                    Resume
+                  </Button>
+                </a>
+              </motion.div>
             </motion.div>
 
             {/* Highlights */}
@@ -360,7 +376,7 @@ export default function HomePage() {
                   whileHover={{ y: -5, scale: 1.02 }}
                 >
                   <item.icon className="w-6 h-6 text-primary mb-2" />
-                  <span className="font-semibold text-foreground">{item.label}</span>
+                  <span className="font-semibold text-white">{item.label}</span>
                   <span className="text-xs text-muted-foreground text-center">{item.desc}</span>
                 </motion.div>
               ))}

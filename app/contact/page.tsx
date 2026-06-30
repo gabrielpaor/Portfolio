@@ -4,6 +4,7 @@ import type React from "react";
 import { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
+import { toast } from "sonner";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -45,13 +46,13 @@ export default function ContactPage() {
       );
 
       if (result.text === "OK") {
-        alert("Thank you for your message! I'll get back to you soon.");
+        toast.success("Thank you for your message! I'll get back to you soon.");
         setFormData({ name: "", email: "", subject: "", message: "" });
       } else {
         throw new Error("Failed to send message");
       }
     } catch (error) {
-      alert(
+      toast.error(
         "Sorry, there was an error sending your message. Please try again later."
       );
       console.error("Email sending error:", error);
