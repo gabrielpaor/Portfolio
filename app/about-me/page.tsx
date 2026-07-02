@@ -101,7 +101,7 @@ export default function AboutMePage() {
                 transition={{ duration: 0.6, ease: "easeOut" }}
               >
                 About{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400">
+                <span className="gradient-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400">
                   Me
                 </span>
               </motion.h1>

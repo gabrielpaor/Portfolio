@@ -6,8 +6,8 @@ export const GREETING =
 
 // Suggested starter questions shown as chips before the visitor types.
 export const SUGGESTED_QUESTIONS = [
+  "Is Gabriel available for full-time work?",
   "What are Gabriel's top skills?",
-  "Tell me about his work experience.",
   "What projects has he built?",
 ] as const;
 

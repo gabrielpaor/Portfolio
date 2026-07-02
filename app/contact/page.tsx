@@ -128,7 +128,7 @@ export default function ContactPage() {
                 transition={{ duration: 0.6, ease: "easeOut" }}
               >
                 Get In{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400">
+                <span className="gradient-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400">
                   Touch
                 </span>
               </motion.h1>

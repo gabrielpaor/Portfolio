@@ -103,7 +103,7 @@ export default function WorkPage() {
                 transition={{ duration: 0.6, ease: "easeOut" }}
               >
                 Work{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400">
+                <span className="gradient-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400">
                   Experience
                 </span>
               </motion.h1>

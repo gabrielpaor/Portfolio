@@ -116,6 +116,18 @@ html {
   background-clip: text;
 }
 
+/*
+ * Forces gradient clip-text to render correctly on mobile Chrome/Safari.
+ * Tailwind's `text-transparent bg-clip-text` sets `color: transparent` but not
+ * `-webkit-text-fill-color`, so some mobile browsers fall back to solid black.
+ */
+.gradient-clip-text {
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
 /* Enhanced hover effects */
 .card-hover {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);

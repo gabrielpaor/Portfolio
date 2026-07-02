@@ -15,7 +15,7 @@ export default function Navigation() {
   const pathname = usePathname();
 
   const navItems = [
-    { href: "/home", label: "Home" },
+    { href: "/", label: "Home" },
     { href: "/about-me", label: "About" },
     { href: "/projects", label: "Projects" },
     { href: "/work", label: "Work" },
@@ -66,7 +66,7 @@ export default function Navigation() {
           {/* Logo */}
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Link
-              href="/home"
+              href="/"
               className="flex items-center gap-2 font-bold text-xl text-foreground"
             >
               <motion.div
